@@ -1,43 +1,84 @@
-/* Global styles for Katherine Taylor website */
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Custom CSS variables and base styles */
 :root {
-  --primary-color: #000000;
-  --secondary-color: #ffffff;
-  --accent-color: #f8f8f8;
+  --shadow-color-hue: 220;
+  --shadow-color-saturation: 10%;
+  --shadow-color-lightness: 16%;
+  --shadow-alpha-low: 0.06;
+  --shadow-alpha-medium: 0.07;
+  --shadow-alpha-high: 0.09;
+  --shadow-elevation-low: 0px 1px 2px hsl(var(--shadow-color-hue) var(--shadow-color-saturation) calc(var(--shadow-color-lightness) + 6%) / var(--shadow-alpha-low)),
+    0px 1px 3px hsl(var(--shadow-color-hue) var(--shadow-color-saturation) var(--shadow-color-lightness) / var(--shadow-alpha-low));
+  --shadow-elevation-medium: 0px 8px 16px -4px hsl(var(--shadow-color-hue) var(--shadow-color-saturation) calc(var(--shadow-color-lightness) - 2%) / var(--shadow-alpha-medium)),
+    0px 6px 12px -6px hsl(var(--shadow-color-hue) var(--shadow-color-saturation) var(--shadow-color-lightness) / var(--shadow-alpha-low));
+  --shadow-elevation-high: 0px 18px 36px -10px hsl(var(--shadow-color-hue) var(--shadow-color-saturation) calc(var(--shadow-color-lightness) - 4%) / var(--shadow-alpha-high)),
+    0px 10px 24px -12px hsl(var(--shadow-color-hue) var(--shadow-color-saturation) var(--shadow-color-lightness) / var(--shadow-alpha-medium));
+  scroll-behavior: smooth;
 }
 
-* {
+*, *::before, *::after {
   box-sizing: border-box;
 }
 
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@layer base {
+  body {
+    @apply m-0 bg-luxury-white text-gray-700 font-light leading-relaxed antialiased;
+    font-family: 'Neue Haas Grotesk', 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.01em;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-extralight text-luxury-black;
+  }
+
+  h1,
+  h2 {
+    @apply tracking-display leading-tight;
+  }
+
+  p {
+    @apply max-w-[65ch] leading-relaxed tracking-luxury;
+  }
+
+  a,
+  button {
+    @apply transition-all duration-luxury-fast ease-luxury-in;
+  }
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@layer utilities {
+  .tracking-luxury {
+    letter-spacing: 0.025em;
+  }
+
+  .tracking-display {
+    letter-spacing: -0.02em;
+  }
+
+  .tracking-uppercase {
+    letter-spacing: 0.15em;
+  }
 }
 
-/* Custom utility classes */
 .text-balance {
   text-wrap: balance;
 }
 
-/* Responsive typography */
+code {
+  font-family: 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', monospace;
+}
+
 @media (max-width: 768px) {
   html {
-    font-size: 14px;
+    font-size: 15px;
   }
 }
 
